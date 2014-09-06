@@ -10,17 +10,12 @@ import UIKit
 
 extension UIView {
 
-    // MARK: Factory & Initializer Methods
+    // MARK: Factory Methods
 
     class func newAutoLayoutView() -> UIView {
         let view: UIView = UIView();
         view.setTranslatesAutoresizingMaskIntoConstraints(false);
         return view;
-    }
-
-    convenience init(forAutoLayout: Bool) {
-        self.init()
-        self.setTranslatesAutoresizingMaskIntoConstraints(forAutoLayout)
     }
 
     // MARK: Centering
