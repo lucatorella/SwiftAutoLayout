@@ -2,18 +2,11 @@ SwiftAutolayout
 ===============
 
 SwiftAutolayout is a UIView extension to easily create autolayout.
-
+Autolayout is a powerful tool, but it's often very verbose. This extension try to simplify some of the common uses of autolayout with some handy methods.
 
 **Initialization**
 
-Bored of writing code like this?
-
-```
-let myView = UIView()
-myView.setTranslatesAutoresizingMaskIntoConstraints(false)
-```
-
-just use this factory method
+There's a factory method to create a `UIView` with `setTranslatesAutoresizingMaskIntoConstraints` already set to `false`.
 
 ```
 let myView = UIView.newAutoLayoutView()
@@ -21,7 +14,7 @@ let myView = UIView.newAutoLayoutView()
 
 **Centering**
 
-Bored of long code just to center a view in its superview? Just use this convenience method:
+With SwiftAutolayout it's easy to center a view in its superview.
 
 ```
 superview.addConstraints(myView.centerInSuperview())
@@ -29,21 +22,23 @@ superview.addConstraints(myView.centerInSuperview())
 
 **Pin edges**
 
-Do you want to pin the edges of a view to the edges of the superview?
+With SwiftAutolayout it's easy to pin view edges to its superview.
 
 ```
 superview.addConstraints(myView.pinEdgesToSuperview())
+superview.addConstraints(myView.pinEdgesToSuperview(20))
 ```
 
 **Sizes**
 
-Do you want to set constraints for width and height?
+With SwiftAutolayout it's easy to create width and height constraints
 
 ```
+let size = CGSize(10,10)
 superview.addConstraints(myView.constraintSize(size))
 ```
 
-Do you want to match the width of a view to the width of another view?
+With SwiftAutolayout it's easy to match the width of a view to the width of another view?
 
 ```
 superview.addConstraints(myView.matchDimension(.Width, otherView: myOtherView))
