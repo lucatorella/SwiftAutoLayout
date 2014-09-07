@@ -48,23 +48,32 @@ The complete API
 ---
 
 ```
-// MARK: Factory Methods
-class func newAutoLayoutView() -> UIView
+extension UIView {
+  // MARK: Factory Methods
+  class func newAutoLayoutView() -> UIView
 
-// MARK: Centering
-func centerInSuperview() -> [NSLayoutConstraint]
-func centerInSuperview(axis: NSLayoutAttribute) -> NSLayoutConstraint
+  // MARK: Centering
+  func centerInSuperview() -> [NSLayoutConstraint]
+  func centerInSuperview(axis: NSLayoutAttribute) -> NSLayoutConstraint
 
-// MARK: Pin Edges to Superview
-func pinEdgesToSuperview() -> [NSLayoutConstraint]
-func pinEdgesToSuperview(distance: CGFloat) -> [NSLayoutConstraint]
+  // MARK: Pin Edges to Superview
+  func pinEdgesToSuperview() -> [NSLayoutConstraint]
+  func pinEdgesToSuperview(distance: CGFloat) -> [NSLayoutConstraint]
 
-// MARK: Same dimension
-func matchDimension(dimension: NSLayoutAttribute, otherView: UIView) -> NSLayoutConstraint
-func matchHeightAndWidth() -> NSLayoutConstraint
+  // MARK: Same dimension
+  func matchDimension(dimension: NSLayoutAttribute, otherView: UIView) -> NSLayoutConstraint
+  func matchHeightAndWidth() -> NSLayoutConstraint
 
-// MARK: Set size
-func constraintSize(size: CGSize) -> [NSLayoutConstraint]
+  // MARK: Set size
+  func constraintSize(size: CGSize) -> [NSLayoutConstraint]
+}
+
+extension NSLayoutConstraint {
+    convenience init(item view1: AnyObject, attribute attr: NSLayoutAttribute, relatedBy relation: NSLayoutRelation = .Equal, toItem view2: AnyObject?, multiplier: CGFloat = 1, constant c: CGFloat = 0)
+    class func constraintsWithVisualFormat(format: String, metrics: [NSObject : AnyObject]?, views: [NSObject : AnyObject]) -> [AnyObject]
+  class func constraintsWithVisualFormat(format: String, options opts: NSLayoutFormatOptions, views: [NSObject : AnyObject]) -> [AnyObject]
+  class func constraintsWithVisualFormat(format: String, views: [NSObject : AnyObject]) -> [AnyObject]
+}
 ```
 
 
