@@ -17,7 +17,7 @@ let myView = UIView.newAutoLayoutView()
 With SwiftAutolayout it's easy to center a view in its superview.
 
 ```
-superview.addConstraints(myView.centerInSuperview())
+myView.centerInSuperview()
 ```
 
 **Pin edges**
@@ -25,8 +25,8 @@ superview.addConstraints(myView.centerInSuperview())
 With SwiftAutolayout it's easy to pin view edges to its superview.
 
 ```
-superview.addConstraints(myView.pinEdgesToSuperview())
-superview.addConstraints(myView.pinEdgesToSuperview(20))
+myView.pinEdgesToSuperview()
+myView.pinEdgesToSuperview(20)
 ```
 
 **Sizes**
@@ -35,13 +35,13 @@ With SwiftAutolayout it's easy to create width and height constraints
 
 ```
 let size = CGSize(10,10)
-superview.addConstraints(myView.constraintSize(size))
+myView.constraintSize(size)
 ```
 
 With SwiftAutolayout it's easy to match the width of a view to the width of another view?
 
 ```
-superview.addConstraints(myView.matchDimension(.Width, otherView: myOtherView))
+myView.matchDimension(.Width, otherView: myOtherView)
 ```
 
 The complete API
@@ -53,19 +53,19 @@ extension UIView {
   class func newAutoLayoutView() -> UIView
 
   // MARK: Centering
-  func centerInSuperview() -> [NSLayoutConstraint]
-  func centerInSuperview(axis: NSLayoutAttribute) -> NSLayoutConstraint
+  func centerInSuperview(autoAdd: Bool = true) -> [NSLayoutConstraint]
+  func centerInSuperview(axis: NSLayoutAttribute, autoAdd: Bool = true) -> NSLayoutConstraint
 
   // MARK: Pin Edges to Superview
-  func pinEdgesToSuperview() -> [NSLayoutConstraint]
-  func pinEdgesToSuperview(distance: CGFloat) -> [NSLayoutConstraint]
+  func pinEdgesToSuperview(autoAdd: Bool = true) -> [NSLayoutConstraint]
+  func pinEdgesToSuperview(distance: CGFloat, autoAdd: Bool = true) -> [NSLayoutConstraint]
 
   // MARK: Same dimension
-  func matchDimension(dimension: NSLayoutAttribute, otherView: UIView) -> NSLayoutConstraint
-  func matchHeightAndWidth() -> NSLayoutConstraint
+  func matchDimension(dimension: NSLayoutAttribute, toItem view: UIView, autoAdd: Bool = true) -> NSLayoutConstraint
+  func matchHeightAndWidth(autoAdd: Bool = true) -> NSLayoutConstraint
 
   // MARK: Set size
-  func constraintSize(size: CGSize) -> [NSLayoutConstraint]
+  func constraintSize(size: CGSize, autoAdd: Bool = true) -> [NSLayoutConstraint]
 }
 
 extension NSLayoutConstraint {
