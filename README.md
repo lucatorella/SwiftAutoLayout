@@ -1,8 +1,8 @@
-SwiftAutolayout
+SwiftAutoLayout
 ===============
 
-SwiftAutolayout is a UIView extension to easily create autolayout.
-Autolayout is a powerful tool, but it's often very verbose. This extension try to simplify some of the common uses of autolayout with some handy methods.
+SwiftAutoLayout is a UIView extension to easily create Auto Layout constraints.
+Auto Layout is a powerful tool, but it's often very verbose. This extension try to simplify some of the common uses of Auto Layout with some handy methods.
 
 **Initialization**
 
