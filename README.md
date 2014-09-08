@@ -53,19 +53,18 @@ extension UIView {
   class func newAutoLayoutView() -> UIView
 
   // MARK: Centering
-  func centerInSuperview() -> [NSLayoutConstraint]
-  func centerInSuperview(axis: NSLayoutAttribute) -> NSLayoutConstraint
+  func centerInSuperview(autoAdd: Bool = true) -> [NSLayoutConstraint]
+  func centerInSuperview(axis: NSLayoutAttribute, autoAdd: Bool = true) -> NSLayoutConstraint
 
   // MARK: Pin Edges to Superview
-  func pinEdgesToSuperview() -> [NSLayoutConstraint]
-  func pinEdgesToSuperview(distance: CGFloat) -> [NSLayoutConstraint]
-
+  func pinEdgesToSuperview(distance: CGFloat = 0, autoAdd: Bool = true) -> [NSLayoutConstraint]
+    
   // MARK: Same dimension
-  func matchDimension(dimension: NSLayoutAttribute, otherView: UIView) -> NSLayoutConstraint
-  func matchHeightAndWidth() -> NSLayoutConstraint
+  func matchDimension(dimension: NSLayoutAttribute, toItem view: UIView, multiplier: CGFloat = 1, constant c: CGFloat = 0, autoAdd: Bool = true) -> NSLayoutConstraint
+  func matchWidthWithHeight(multiplier: CGFloat = 1, constant c: CGFloat = 0, autoAdd: Bool = true) -> NSLayoutConstraint
 
   // MARK: Set size
-  func constraintSize(size: CGSize) -> [NSLayoutConstraint]
+  func constraintSize(size: CGSize, relatedBy relation: NSLayoutRelation = .Equal, autoAdd: Bool = true) -> [NSLayoutConstraint]
 }
 
 extension NSLayoutConstraint {

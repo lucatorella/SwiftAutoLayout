@@ -43,16 +43,7 @@ extension UIView {
 
     // MARK: Pin Edges to Superview
 
-    func pinEdgesToSuperview(autoAdd: Bool = true) -> [NSLayoutConstraint] {
-        let a = pinEdgesToSuperview(0)
-        if autoAdd {
-            let superview: UIView? = self.superview
-            superview?.addConstraints(a)
-        }
-        return a
-    }
-
-    func pinEdgesToSuperview(distance: CGFloat, autoAdd: Bool = true) -> [NSLayoutConstraint] {
+    func pinEdgesToSuperview(distance: CGFloat = 0, autoAdd: Bool = true) -> [NSLayoutConstraint] {
         let superview: UIView? = self.superview
         assert(superview != nil, "View's superview must not be nil")
         let left = NSLayoutConstraint(item: self, attribute: .Left, toItem: superview, constant: distance)
@@ -68,33 +59,33 @@ extension UIView {
 
     // MARK: Same dimension
 
-    func matchDimension(dimension: NSLayoutAttribute, toItem view: UIView, autoAdd: Bool = true) -> NSLayoutConstraint {
+    func matchDimension(dimension: NSLayoutAttribute, toItem view: UIView, multiplier: CGFloat = 1, constant c: CGFloat = 0, autoAdd: Bool = true) -> NSLayoutConstraint {
         assert(dimension == .Width || dimension == .Height, "You can only match the width or the height of a view, no other attribute is accepted")
-        let c = NSLayoutConstraint(item: self, attribute: dimension, toItem: view)
+        let constraint = NSLayoutConstraint(item: self, attribute: dimension, toItem: view, multiplier: multiplier, constant: c)
         if autoAdd {
             let superview = self.commonSuperview(toItem: view)
             assert(superview != nil, "No common superview")
-            if let s = superview {
-                s.addConstraint(c)
+            if let sview = superview {
+                sview.addConstraint(constraint)
             }
         }
-        return c
+        return constraint
     }
 
-    func matchHeightAndWidth(autoAdd: Bool = true) -> NSLayoutConstraint {
-        let c = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1, constant: 0)
+    func matchWidthWithHeight(multiplier: CGFloat = 1, constant c: CGFloat = 0, autoAdd: Bool = true) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: multiplier, constant: c)
         if autoAdd {
             let superview: UIView? = self.superview
-            superview?.addConstraint(c)
+            superview?.addConstraint(constraint)
         }
-        return c
+        return constraint
     }
 
     // MARK: Set size
 
-    func constraintSize(size: CGSize, autoAdd: Bool = true) -> [NSLayoutConstraint] {
-        let width = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: size.width)
-        let height = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: size.height)
+    func constraintSize(size: CGSize, relatedBy relation: NSLayoutRelation = .Equal, autoAdd: Bool = true) -> [NSLayoutConstraint] {
+        let width = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: relation, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: size.width)
+        let height = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: relation, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: size.height)
         if autoAdd {
             let superview: UIView? = self.superview
             superview?.addConstraints([width, height])
