@@ -107,16 +107,16 @@ extension UIView {
     private func commonSuperview(toItem view: UIView) -> UIView? {
 
         var aSuperview = self.superview
-        var superviews = [self]
+        var superviews = NSMutableSet(object: self)
 
         while aSuperview != nil {
-            superviews.append(aSuperview!)
+            superviews.addObject(aSuperview!)
             aSuperview = aSuperview!.superview
         }
 
         aSuperview = view
         while aSuperview != nil {
-            if contains(superviews, aSuperview!) {
+            if superviews.containsObject(aSuperview!) {
                 return aSuperview!
             }
             aSuperview = aSuperview!.superview
