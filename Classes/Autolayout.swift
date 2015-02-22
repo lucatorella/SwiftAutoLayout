@@ -12,8 +12,8 @@ extension UIView {
 
     // MARK: Factory Methods
 
-    class func newAutoLayoutView() -> UIView {
-        let view: UIView = UIView();
+    class func newAutoLayoutView() -> Self {
+        let view = self();
         view.setTranslatesAutoresizingMaskIntoConstraints(false);
         return view;
     }
