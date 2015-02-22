@@ -16,11 +16,10 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/lucatorella"
 
   s.ios.deployment_target = "7.0"
-  s.osx.deployment_target = "10.9"
 
-  s.source       = { :git => "https://github.com/lucatorella/SwiftAutolayout.git", :tag => "0.1.1" }
+  s.source       = { :git => "https://github.com/lucatorella/SwiftAutolayout.git", :tag => s.version }
 
-  s.source_files  = "Classes"
+  s.source_files  = "Classes/*.swift"
 
   s.requires_arc = true
 
