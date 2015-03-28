@@ -1,5 +1,5 @@
 //
-//  Autolayout.swift
+//  SwiftAutoLayout.swift
 //  Swift+Autolayout
 //
 //  Created by Luca Torella on 04/09/2014.
